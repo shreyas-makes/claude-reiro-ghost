@@ -7,15 +7,16 @@ Replacing Ghost's native comments with webmentions
 Connecting your blog to the broader social web
 Maintaining your content's sovereignty while enabling distributed discussions
 
-Features ✨
+## Features ✨
 
-Webmention Support: Full implementation of webmention.io integration
-Brid.gy Integration: Connect with Mastodon, Bluesky, and other platforms
-URL Handling: Works with both www and non-www domain variants
-Custom Styling: Clean, professional design that matches Ghost's aesthetic
-Comment Replacement: Complete replacement for Ghost's native commenting system
+1. Webmention Support: Full implementation of webmention.io integration
+2. Brid.gy Integration: Connect with Mastodon, Bluesky, and other platforms
+3. URL Handling: Works with both www and non-www domain variants
+4. Custom Styling: Clean, professional design that matches Ghost's aesthetic
+5. Comment Replacement: Complete replacement for Ghost's native commenting system
 
-Installation 🛠️
+## Installation 🛠️
+
 1. Code Injection Setup
 Add this to your Ghost Admin → Settings → Code injection → Site Header:
 
@@ -161,11 +162,8 @@ Add this to your Ghost Admin → Settings → Code injection → Site Header:
 
 ```
 
+## File Structure
 
-
-
-
-2. File Structure
 ```
 plaintextCopyassets/
 └── js/
@@ -173,20 +171,21 @@ plaintextCopyassets/
 post.hbs                 # Modified template
 ```
 
-3. Brid.gy Configuration
+## Brid.gy Configuration
 
 1. Visit brid.gy
 2. Connect desired platforms: Mastodon, Bluesky
 3. Store Micropub tokens securely
 
-Usage 📝
+## Usage 📝
 
 1. Publish content on your Ghost blog
 2. Content syndicates to connected platforms via Brid.gy
 3. Social interactions flow back as webmentions
 4. Conversations appear on your original post
 
-Troubleshooting 🔧
+## Troubleshooting 🔧
+
 Common issues and solutions:
 
 1. No webmentions showing: Verify webmention.io endpoint configuration
@@ -194,7 +193,7 @@ Common issues and solutions:
 3. Style conflicts: Review CSS specificity
 4. Brid.gy issues: Validate Micropub token status
 
-Contributing 🤝
+## Contributing 🤝
 
 1. Fork the repository
 2. Create your feature branch
@@ -202,7 +201,7 @@ Contributing 🤝
 4. Push to the branch
 5. Open a Pull Request
 
-Acknowledgments 🙏
+## Acknowledgments 🙏
 
 1. webmention.io for the webmention infrastructure
 2. Brid.gy for social platform integration
