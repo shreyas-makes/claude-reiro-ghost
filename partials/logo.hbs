@@ -1,0 +1,19 @@
+{{#match @custom.color_scheme "Dark"}}
+	{{#if @custom.logo_for_dark_version}}
+	{{>logo_mode is_dark=true}}
+	{{else}}
+	{{>logo_mode is_light=true}}
+	{{/if}}
+{{else match @custom.color_scheme "Auto: Light/Dark"}}
+	{{#if @custom.logo_for_dark_version}}
+	{{>logo_mode is_dark=true is_auto=true}}
+	{{/if}}
+	{{>logo_mode is_light=true}}
+{{else match @custom.color_scheme "Auto: Sepia/Dark"}}
+	{{#if @custom.logo_for_dark_version}}
+	{{>logo_mode is_dark=true is_auto=true}}
+	{{/if}}
+	{{>logo_mode is_light=true}}
+{{else}}
+	{{>logo_mode is_light=true}}
+{{/match}}

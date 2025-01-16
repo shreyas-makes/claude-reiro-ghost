@@ -1,0 +1,53 @@
+{{#if @site.members_enabled}}
+{{^if @member}}
+{{#if is_hero}}
+{{#match @custom.hero_options "Subscribe form"}}
+<div class="subscribe-wrap is-hero">
+	<form data-members-form="subscribe" data-members-autoredirect="false">
+		<input data-members-email type="email" placeholder="{{t "Your email"}}" aria-label="{{t "Your email"}}" required>
+		<button class="global-button" type="submit">{{t "Subscribe"}}</button>
+	</form>
+	<div class="subscribe-alert">
+		<span class="alert-loading global-alert">{{t "Processing your application"}}</span>
+		<span class="alert-success global-alert">{{t "Please check your inbox and click the link to confirm your subscription."}}</span>
+		<span class="alert-error global-alert">{{t "There was an error sending the email"}}</span>
+	</div>
+</div>
+{{/match}}
+{{/if}}
+{{#if is_box}}
+{{#if is_footer}}
+<div class="global-padding">
+	<small class="subscribe-form-subtitle global-subtitle">{{t "Newsletter"}}</small>
+	{{/if}}
+	<div class="subscribe-form global-radius{{#if is_sticky}} is-sticky{{/if}}">
+		<div class="global-dynamic-color">
+			{{^if is_footer}}
+			<small class="global-subtitle">{{t "Newsletter"}}</small>
+			{{/if}}
+			<h3 class="subscribe-title">{{#if label}}{{label}}{{else}}{{t "Want to receive my work as I publish it?"}}{{/if}}</h3>
+		</div>
+		<div class="subscribe-wrap">
+			<form data-members-form="subscribe" data-members-autoredirect="false">
+				<input data-members-email type="email" placeholder="{{t "Your email"}}" aria-label="{{t "Your email"}}" required>
+				<button class="global-button no-color" type="submit">{{#if button}}{{button}}{{else}}{{t "Subscribe"}}{{/if}}</button>
+			</form>
+			<div class="subscribe-alert global-dynamic-color">
+				<span class="alert-loading global-alert">{{t "Processing the subscription"}}</span>
+				<span class="alert-success global-alert">{{t "Please check your inbox and click the link to confirm your subscription."}}</span>
+				<span class="alert-error global-alert">{{t "There was an error sending the email"}}</span>
+			</div>
+		</div>
+	</div>
+	{{#if is_footer}}
+</div>
+{{/if}}
+{{/if}}
+{{#if is_button}}
+<div class="footer-subscribe">
+	<a href="{{@site.url}}{{#if @custom.slug_for_become_a_subscriber_button}}{{@custom.slug_for_become_a_subscriber_button}}{{else}}/signup/{{/if}}" class="global-button">{{t "Invite me to your inbox →"}}</a>
+	<small>{{t "Want to stay up to date?"}}</small>
+</div>
+{{/if}}
+{{/if}}
+{{/if}}

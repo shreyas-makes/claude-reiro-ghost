@@ -1,0 +1,55 @@
+{{^if is_widget}}
+<article class="item{{#if is_top}} is-top{{#if is_first}} is-first{{/if}}{{else if is_special}} is-special{{/if}}">
+	{{#if is_featured}}
+	<a href="{{url}}" class="global-link" aria-label="{{title}}"></a>
+	{{/if}}
+	{{#if feature_image}}
+	<a href="{{url}}" class="item-image global-image global-image-orientation global-radius">
+		{{>images/loop_image}}
+	</a>
+	{{/if}}
+	<div class="item-content">
+		{{^if is_special}}
+		{{^if is_featured}}
+		<div class="item-tags global-tags">
+			{{>members/visibility_label}}{{#if tags}}
+				<div class="post-tags">
+					{{#foreach tags}}
+						{{^has slug="rough-notes"}}
+							<a href="{{url}}" class="post-tag">{{name}}</a>
+						{{/has}}
+					{{/foreach}}
+				</div>
+			{{/if}}
+		</div>
+		{{/if}}
+		{{/if}}
+		<h2 class="item-title"><a href="{{url}}">{{title}}</a></h2>
+		{{^if is_special}}
+		{{^if is_featured}}
+		{{#has any="excerpt,custom_excerpt"}}
+		{{#unless feature_image}}
+		<p class="item-excerpt global-excerpt no-image">
+			{{#if custom_excerpt}}{{custom_excerpt}}{{else if excerpt}}{{excerpt}}...{{/if}}
+		</p>
+		{{else if show_excerpt}}
+		<p class="item-excerpt global-excerpt">
+			{{#if custom_excerpt}}{{custom_excerpt}}{{else if excerpt}}{{excerpt}}...{{/if}}
+		</p>
+		{{/unless}}
+		{{/has}}
+		{{/if}}
+		{{/if}}
+		{{>meta}}
+	</div>
+</article>
+{{else}}
+<a href="{{url}}" class="item global-image-orientation global-radius{{#if is_authors}} is-portrait{{/if}}">
+	<h2 class="item-title">{{name}}</h2>
+	<div class="widget-image global-image">
+		{{#if other_image}}
+		{{>images/other_image}}
+		{{/if}}
+	</div>
+</a>
+{{/if}}

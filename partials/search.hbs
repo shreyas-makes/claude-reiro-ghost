@@ -1,0 +1,54 @@
+{{#if @custom.content_api_key_for_search}}
+{{#if is_search_core}}
+<div class="search-section">
+	<div class="search-wrap">
+		<div class="search-content global-radius">
+			<form class="search-form" onsubmit="return false">
+				<input class="search-input" type="text" placeholder="{{t "Search"}}">
+				<div class="search-meta">
+					<span class="search-info">{{t "Please enter at least 3 characters"}}</span>
+					<span class="search-counter is-hide">
+						{{{t "{counter} results for your search" counter="<span>0</span>"}}}
+					</span>
+				</div>
+				<span class="search-close">{{>icons/site/close}}</span>
+			</form>
+			<div class="search-results global-image"></div>
+		</div>
+	</div>
+	<div class="search-overlay"></div>
+</div>
+{{#contentFor "script_js"}}
+<script>
+const options = {
+	api:'{{@site.url}}/ghost/api/content/posts/?key='+"{{@custom.content_api_key_for_search}}"+'&limit=all&fields=url,title,feature_image,published_at,custom_excerpt,visibility,html',
+	threshold: 0.1,
+	ignoreLocation: true,
+	keys: ['title','custom_excerpt','html'],
+	images: true,
+	limit: 30
+}
+</script>
+{{/contentFor}}
+{{/if}}
+{{/if}}
+{{#if is_mobile}}
+<span class="header-search search-open is-mobile"{{^if @custom.content_api_key_for_search}} data-ghost-search{{/if}}>{{>icons/site/search}}</span>
+{{else if is_desktop}}
+<li class="header-search search-open is-desktop"{{^if @custom.content_api_key_for_search}} data-ghost-search{{/if}}>{{>icons/site/search}}</li>
+{{/if}}
+{{#if is_hero}}
+{{#match @custom.hero_options "Search box (Flat style)"}}
+<div class="hero-search is-flat{{#if @custom.content_api_key_for_search}} search-open"{{else}}" data-ghost-search{{/if}}>
+	<span>{{#if @custom.content_api_key_for_search}}{{t "Search for essays"}}{{else}}{{t "Search for essays, rough notes, and more"}}{{/if}}</span><span class="global-dynamic-color">{{>icons/site/search}}</span>
+</div>
+{{else match @custom.hero_options "Search box (Shadow style)"}}
+<div class="hero-search is-shadow{{#if @custom.content_api_key_for_search}} search-open"{{else}}" data-ghost-search{{/if}}>
+	<span>{{#if @custom.content_api_key_for_search}}{{t "Search for essays"}}{{else}}{{t "Search for essays, rough notes"}}{{/if}}</span><span class="global-dynamic-color">{{>icons/site/search}}</span>
+</div>
+{{else match @custom.hero_options "Search box (Linear style)"}}
+<div class="hero-search is-linear{{#if @custom.content_api_key_for_search}} search-open"{{else}}" data-ghost-search{{/if}}>
+	<span>{{#if @custom.content_api_key_for_search}}{{t "Search for essays"}}{{else}}{{t "Search for essays, rough notes"}}{{/if}}</span><span class="global-dynamic-color">{{>icons/site/search}}</span>
+</div>
+{{/match}}
+{{/if}}

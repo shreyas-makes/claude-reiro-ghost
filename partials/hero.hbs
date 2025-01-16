@@ -1,0 +1,7 @@
+<div class="hero-section">
+	<div class="hero-wrap global-padding">
+		<h1 class="hero-title global-title">{{#if @custom.hero_title_text}}{{{@custom.hero_title_text}}}{{else}}{{{t "{start-bold}Hey, we’re {site-title}.{end-bold}{new-line}See our thoughts, stories and ideas." new-line="<br>" start-bold="<span>" end-bold="</span>" site-title=@site.title}}}{{/if}}</h1>
+		{{>search is_hero=true}}
+		{{>members/subscribe_form is_hero=true}}
+	</div>
+</div>

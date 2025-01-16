@@ -1,0 +1,13 @@
+{{#if comments}}
+<div class="comments-section global-padding">
+	<div class="comments-wrap global-radius">
+		<div class="comments-content">
+			<div class="comments-header">
+				<h3>{{t "Member discussion"}}</h3>
+				{{comment_count empty=(t "0 comments") singular=(t "comment") plural=(t "comments") autowrap="span"}}
+			</div>
+			{{comments title="" count=false mode="auto"}}
+		</div>
+	</div>
+</div>
+{{/if}}

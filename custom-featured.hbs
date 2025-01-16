@@ -1,0 +1,11 @@
+{{!< default}}
+{{#post}}
+{{#match @page.show_title_and_feature_image}}
+{{>posts/header featured_page=true is_custom=true}}
+{{/match}}
+{{#get "posts" limit="all" filter="featured:true" include="authors,tags,tiers" as |featured|}}
+	{{#if featured}}
+		{{>loop is_archive=true is_featured=true label=false}}
+	{{/if}}
+{{/get}}
+{{/post}}

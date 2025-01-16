@@ -1,0 +1,16 @@
+{{^if is_header}}
+<div class="post-share">
+	{{/if}}
+	<div class="post-share-wrap">
+		<a href="https://x.com/intent/tweet?text={{encode title}}&amp;url={{url absolute="true"}}" target="_blank" rel="noopener" aria-label="Share on X">{{>icons/social/x}}</a>
+		<a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" target="_blank" rel="noopener" aria-label="Share on Facebook">{{>icons/social/facebook}}</a>
+		<a href="https://www.linkedin.com/shareArticle?mini=true&amp;title={{encode title}}&amp;url={{url absolute="true"}}" target="_blank" rel="noopener" aria-label="Share on Linkedin">{{>icons/social/linkedin}}</a>
+		{{^if is_header}}
+		<a href="javascript:" class="post-share-link" id="copy" data-clipboard-target="#copy-link" aria-label="Copy link">{{>icons/site/copy}}</a>
+		<small class="share-link-info global-alert">{{t "The link has been copied!"}}</small>
+		{{/if}}
+	</div>
+	{{^if is_header}}
+	<input type="text" value="{{url absolute="true"}}" id="copy-link" aria-label="Copy link input">
+</div>
+{{/if}}

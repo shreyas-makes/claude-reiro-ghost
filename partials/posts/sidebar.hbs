@@ -1,0 +1,37 @@
+{{#if feature_image}}
+{{#if @custom.show_author}}
+{{^match @custom.feature_image_orientation "Disable"}}
+<div class="is-authors">
+	<small class="global-subtitle">{{t "Written by"}}</small>
+	{{#foreach authors}}
+	<a href="{{url}}"{{^if bio}} class="no-bio"{{/if}}>
+		{{#if profile_image}}
+		{{>images/other_image other_image=profile_image alt="" lazy=true}}
+		{{/if}}
+		<div>
+			<h3 class="post-sidebar-title">{{name}}</h3>
+			{{#if bio}}<p>{{bio}}</p>{{/if}}
+		</div>
+	</a>
+	{{/foreach}}
+</div>
+{{/match}}
+{{/if}}
+{{/if}}
+{{#get "posts" limit="3" filter="id:-{{id}}+featured:true+feature_image:-null" as |featured|}}
+{{#if featured}}
+<div class="is-featured">
+	<small class="global-subtitle">{{t "Editor’s Choice"}}</small>
+	{{#foreach featured}}
+	<a href="{{url}}">
+		{{#if feature_image}}
+		{{>images/other_image other_image=feature_image alt="" lazy=true}}
+		{{/if}}
+		<div>
+			<h3 class="post-sidebar-title">{{title}}</h3>
+		</div>
+	</a>
+	{{/foreach}}
+</div>
+{{/if}}
+{{/get}}

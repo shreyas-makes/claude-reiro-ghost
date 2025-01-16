@@ -1,0 +1,9 @@
+{{#if is_light}}
+{{#if @site.logo}}
+<a href="{{@site.url}}" class="is-logo"><img src="{{@site.logo}}" alt="{{@site.title}} home"></a>
+{{else}}
+<a href="{{@site.url}}" class="is-title">{{@site.title}}</a>
+{{/if}}
+{{else if is_dark}}
+<a href="{{@site.url}}" class="is-logo{{#if is_auto}} is-auto{{/if}}"><img src="{{@custom.logo_for_dark_version}}" alt="{{@site.title}} home"></a>
+{{/if}}

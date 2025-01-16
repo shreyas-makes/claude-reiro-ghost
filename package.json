@@ -1,0 +1,177 @@
+{
+  "name": "reiro",
+  "demo": "https://reiro.fueko.net",
+  "version": "1.4.0",
+  "docs": "https://fueko.net/docs/reiro/",
+  "author": {
+    "name": "fueko",
+    "email": "hello@fueko.net",
+    "url": "https://fueko.net"
+  },
+  "keywords": [
+    "ghost-theme",
+    "shreyas",
+    "indiehacking",
+    "indiemaking",
+    "modern-software",
+    "product"
+  ],
+  "config": {
+    "posts_per_page": 27,
+    "card_assets": true,
+    "image_sizes": {
+      "s": {
+        "width": 300
+      },
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 1200
+      },
+      "xl": {
+        "width": 1600
+      },
+      "xxl": {
+        "width": 2000
+      }
+    },
+    "custom": {
+      "color_scheme": {
+        "type": "select",
+        "options": [
+          "Light",
+          "Dark",
+          "Sepia",
+          "Auto: Light/Dark",
+          "Auto: Sepia/Dark"
+        ],
+        "default": "Light"
+      },
+      "logo_for_dark_version": {
+        "type": "image",
+        "visibility": "color_scheme:[Dark,'Auto: Light/Dark','Auto: Sepia/Dark']"
+      },
+      "fonts": {
+        "type": "select",
+        "options": [
+          "System fonts",
+          "Archivo + System fonts",
+          "Figtree + Inter",
+          "Fraunces + System fonts",
+          "IBM Plex Sans",
+          "Inter",
+          "Libre Franklin + System fonts",
+          "Livvic + System fonts",
+          "Lora + System fonts",
+          "Manrope + System fonts",
+          "Nunito",
+          "Nunito Sans",
+          "Oswald + Roboto",
+          "Playfair + System fonts",
+          "Poppins + Inter",
+          "Radio Canada + System fonts",
+          "Readex Pro + System fonts",
+          "Roboto",
+          "Space Grotesk + Inter",
+          "Source Serif Pro + Inter"
+        ],
+        "default": "Fraunces + System fonts"
+      },
+      "show_author": {
+        "type": "boolean",
+        "default": true,
+        "description": "Use if you don’t want to display the author in the feed and on the post page"
+      },
+      "slug_for_become_a_subscriber_button": {
+        "type": "text",
+        "default": "/signup/"
+      },
+      "content_api_key_for_search": {
+        "type": "text"
+      },
+      "contact_form_endpoint": {
+        "type": "text"
+      },
+      "footer_copyright": {
+        "type": "text"
+      },
+      "hero_title_text": {
+        "type": "text",
+        "group": "homepage"
+      },
+      "hero_options": {
+        "type": "select",
+        "options": [
+          "Subscribe form",
+          "Search box (Flat style)",
+          "Search box (Linear style)",
+          "Search box (Shadow style)",
+          "Disable"
+        ],
+        "default": "Disable",
+        "group": "homepage"
+      },
+      "style_for_featured_section": {
+        "type": "select",
+        "options": [
+          "Gray",
+          "Gray/Accent color",
+          "Accent color",
+          "Accent color/Gray",
+          "Disable"
+        ],
+        "default": "Gray/Accent color",
+        "group": "homepage"
+      },
+      "slug_for_see_all_featured_button": {
+        "type": "text",
+        "group": "homepage"
+      },
+      "widgets": {
+        "type": "select",
+        "options": [
+          "Popular tags",
+          "Best authors",
+          "Disable"
+        ],
+        "default": "Popular tags",
+        "group": "homepage"
+      },
+      "slugs_for_selected_tags_or_authors": {
+        "type": "text",
+        "group": "homepage"
+      },
+      "tags_for_special_section": {
+        "type": "text",
+        "group": "homepage",
+        "description": "Provide the tag (or tags) slug you want to display in the section below the 'Load more' button"
+      },
+      "feature_image_orientation": {
+        "type": "select",
+        "options": [
+          "Natural",
+          "Landscape",
+          "Panoramic",
+          "Natural wide",
+          "Landscape wide",
+          "Panoramic wide",
+          "Disable"
+        ],
+        "default": "Panoramic wide",
+        "group": "post"
+      },
+      "sidebar": {
+        "type": "select",
+        "options": [
+          "Without Subscription form",
+          "With Subscription form",
+          "With sticky Subscription form",
+          "Disable"
+        ],
+        "default": "With sticky Subscription form",
+        "group": "post"
+      }
+    }
+  }
+}

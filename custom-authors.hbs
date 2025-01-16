@@ -1,0 +1,32 @@
+{{!< default}}
+{{#post}}
+{{#match @page.show_title_and_feature_image}}
+{{>posts/header is_custom=true}}
+{{/match}}
+<div class="custom-archive global-padding">
+	<small class="global-subtitle">{{t "Meet our authors"}}</small>
+	{{#get "authors" limit="all" include="count.posts" order="count.posts desc" as |authors|}}
+	{{#if authors}}
+	<div class="loop-wrap is-authors">
+		{{#foreach authors}}
+		{{#if count.posts}}
+		<div class="custom-archive-item item">
+			{{#if profile_image}}
+			<a href="{{url}}" class="item-image global-image global-image-orientation global-radius is-portrait">
+				{{>images/archive_image archive_image=profile_image}}
+			</a>
+			{{/if}}
+			<div class="item-content">
+				<h2 class="item-title"><a href="{{url}}">{{name}}</a></h2>
+				<small>{{#if location}}{{t "from"}} {{location}} ∙ {{/if}}{{plural count.posts empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}</small>
+				{{#if bio}}<p class="item-excerpt global-excerpt is-authors">{{bio}}</p>
+				{{/if}}
+			</div>
+		</div>
+		{{/if}}
+		{{/foreach}}
+	</div>
+	{{/if}}
+	{{/get}}
+</div>
+{{/post}}

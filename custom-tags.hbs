@@ -1,0 +1,33 @@
+{{!< default}}
+{{#post}}
+{{#match @page.show_title_and_feature_image}}
+{{>posts/header is_custom=true}}
+{{/match}}
+<div class="custom-archive global-padding">
+	<small class="global-subtitle">{{t "Explore tags"}}</small>
+	{{#get "tags" limit="all" filter="visibility:public+slug:-rough-notes" include="count.posts" order="count.posts desc" as |tags|}}
+	{{#if tags}}
+	<div class="loop-wrap is-tags">
+		{{#foreach tags}}
+		{{#if count.posts}}
+		<div class="custom-archive-item item">
+			{{#if feature_image}}
+			<a href="{{url}}" class="item-image global-image global-image-orientation global-radius">
+				{{>images/archive_image archive_image=feature_image}}
+			</a>
+			{{/if}}
+			<div class="item-content">
+				<h2 class="item-title"><a href="{{url}}">{{name}}</a></h2>
+				<small>{{plural count.posts empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}</small>
+				{{^if feature_image}}
+				{{#if description}}<p class="item-excerpt global-excerpt">{{description}}</p>{{/if}}
+				{{/if}}
+			</div>
+		</div>
+		{{/if}}
+		{{/foreach}}
+	</div>
+	{{/if}}
+	{{/get}}
+</div>
+{{/post}}

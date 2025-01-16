@@ -1,0 +1,22 @@
+{{!< default}}
+{{#post}}
+{{#match @page.show_title_and_feature_image}}
+{{>posts/header membership_page=true is_custom=true}}
+{{/match}}
+{{>members/tiers membership_page=true}}
+{{#if html}}
+<div class="faq-section global-padding">
+	<div class="faq-wrap">
+		<h2 class="faq-title global-title">{{t "FAQs"}}</h2>
+		<div class="faq-content">
+			{{content}}
+		</div>
+	</div>
+</div>
+{{/if}}
+{{#get "posts" limit="5" filter="visibility:[members,paid,tiers]" include="authors" as |special_posts|}}
+	{{#if special_posts}}
+		{{>related label=(t "The latest posts only for subscribers")}}
+	{{/if}}
+{{/get}}
+{{/post}}

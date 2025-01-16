@@ -1,0 +1,32 @@
+{{!< default-custom}}
+{{#post}}
+<div class="custom-wrap">
+	<div class="custom-container">
+		<div class="custom-logo-wrap">
+			<div class="custom-logo global-logo is-header">{{>logo}}</div>
+		</div>
+		<div class="custom-content">
+			<form data-members-form="subscribe" data-members-autoredirect="false">
+				<h1 class="custom-title">{{title}}</h1>
+				{{#if @site.portal_name}}
+				<input data-members-name type="text" placeholder="{{t "Your name"}}" aria-label="{{t "Your name"}}" required>
+				{{/if}}
+				<input data-members-email type="email" placeholder="{{t "Your email"}}" aria-label="{{t "Your email"}}" required>
+				<button class="global-button" type="submit">{{t "Subscribe"}}</button>
+				<div>
+					<small class="alert-loading global-alert">{{t "Processing your application"}}</small>
+					<small class="alert-error global-alert">{{t "There was an error sending the email"}}</small>
+				</div>
+			</form>
+			<div class="alert-success">
+				<h2 class="global-title">{{t "Great!"}}</h2>
+				<p>{{t "Please check your inbox and click the link to confirm your subscription."}}</p>
+				<a href="{{@site.url}}" class="global-button">{{t "Back to homepage"}}</a>
+			</div>
+		</div>
+	</div>
+	{{#if feature_image}}
+	<div class="custom-image global-bg-image" style="background-image: url({{feature_image}})"></div>
+	{{/if}}
+</div>
+{{/post}}

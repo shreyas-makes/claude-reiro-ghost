@@ -1,0 +1,17 @@
+{{#match @custom.tags_for_special_section}}
+{{#get "posts" limit="5" filter="tag:[{{@custom.tags_for_special_section}}]" include="authors" as |special_posts|}}
+	{{#if special_posts}}
+		{{>related label=(t "Rough Notes")}}
+	{{/if}}
+{{/get}}
+{{else}}
+{{#foreach posts limit="1"}}
+{{#if primary_tag}}
+{{#get "posts" limit="5" filter="tag:{{primary_tag.slug}}+id:-{{id}}" include="authors" as |special_posts|}}
+	{{#if special_posts}}
+		{{>related label=(t "Rough Notes")}}
+	{{/if}}
+{{/get}}
+{{/if}}
+{{/foreach}}
+{{/match}}

@@ -1,0 +1,34 @@
+<aside class="navigation-section global-padding">
+	<div class="navigation-wrap">
+		{{#next_post}}
+		<a href="{{url}}" class="navigation-next">
+			<small class="global-subtitle">{{t "Newer post"}}</small>
+			<div>
+				{{#if feature_image}}
+				<div class="navigation-image global-image-orientation global-image global-radius is-square">
+					{{>images/other_image other_image=feature_image alt="" lazy=true}}
+				</div>
+				{{/if}}
+				<div class="navigation-title">
+					<div><h3>{{title}}</h3></div>
+				</div>
+			</div>
+		</a>
+		{{/next_post}}
+		{{#prev_post}}
+		<a href="{{url}}" class="navigation-prev">
+			<small class="global-subtitle">{{t "Older post"}}</small>
+			<div>
+				<div class="navigation-title">
+					<div><h3>{{title}}</h3></div>
+				</div>
+				{{#if feature_image}}
+				<div class="navigation-image global-image-orientation global-image global-radius is-square">
+					{{>images/other_image other_image=feature_image alt="" lazy=true}}
+				</div>
+				{{/if}}
+			</div>
+		</a>
+		{{/prev_post}}
+	</div>
+</aside>

@@ -1,0 +1,23 @@
+{{!< default}}
+
+<div class="rough-notes-page global-padding">
+  <div class="global-content">
+    {{#page.rough-notes}}
+      <h1 class="global-title">{{title}}</h1>
+      <p class="global-description">
+        {{content}}
+      </p>
+    {{/page.rough-notes}}
+
+    <div class="loop-section global-padding">
+      <small class="global-subtitle">{{t "Rough Notes Posts"}}</small>
+      <div class="loop-wrap">
+        {{#get "posts" limit="all" filter="tag:rough-notes" include="authors,tags" as |posts|}}
+          {{#foreach posts}}
+            {{> "item" show_excerpt=true}}
+          {{/foreach}}
+        {{/get}}
+      </div>
+    </div>
+  </div>
+</div>

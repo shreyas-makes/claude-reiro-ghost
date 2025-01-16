@@ -1,0 +1,95 @@
+{{! Header navigation }}
+
+{{^if isSecondary}}
+<ul>
+	{{#foreach navigation to="5"}}
+	<li><a href="{{url absolute="true"}}"{{#if current}} class="is-active"{{/if}}>{{label}}</a></li>
+	{{/foreach}}
+	{{#foreach navigation from="6"}}
+	{{#if @first}}
+	<li class="is-dropdown">
+		<span>{{>icons/site/dots}}</span>
+		<ul>
+			{{/if}}
+			<li><a href="{{url absolute="true"}}"{{#if current}} class="is-active"{{/if}}>{{label}}</a></li>
+			{{#if @last}}
+		</ul>
+	</li>
+	{{/if}}
+	{{/foreach}}
+</ul>
+<ul>
+	{{>search is_desktop=true}}
+	{{>members/login_panel}}
+</ul>
+{{else}}
+
+
+{{! Footer navigation }}
+
+
+{{#foreach navigation limit="4"}}
+{{#if @first}}
+<div class="footer-nav-column">
+	<small>{{t "Column 1"}}</small>
+	<ul>
+		{{/if}}
+		<li><a href="{{url absolute="true"}}">{{label}}</a></li>
+		{{#if @last}}
+	</ul>
+</div>
+{{/if}}
+{{/foreach}}
+
+{{#foreach navigation limit="4" from="5"}}
+{{#if @first}}
+<div class="footer-nav-column">
+	<small>{{t "Column 2"}}</small>
+	<ul>
+		{{/if}}
+		<li><a href="{{url absolute="true"}}">{{label}}</a></li>
+		{{#if @last}}
+	</ul>
+</div>
+{{/if}}
+{{/foreach}}
+
+{{#foreach navigation limit="4" from="9"}}
+{{#if @first}}
+<div class="footer-nav-column">
+	<small>{{t "Column 3"}}</small>
+	<ul>
+		{{/if}}
+		<li><a href="{{url absolute="true"}}">{{label}}</a></li>
+		{{#if @last}}
+	</ul>
+</div>
+{{/if}}
+{{/foreach}}
+
+{{#foreach navigation limit="4" from="13"}}
+{{#if @first}}
+<div class="footer-nav-column">
+	<small>{{t "Column 4"}}</small>
+	<ul>
+		{{/if}}
+		<li><a href="{{url absolute="true"}}">{{label}}</a></li>
+		{{#if @last}}
+	</ul>
+</div>
+{{/if}}
+{{/foreach}}
+
+{{#foreach navigation from="17"}}
+{{#if @first}}
+<div class="footer-nav-column">
+	<small>{{t "Column 5"}}</small>
+	<ul>
+		{{/if}}
+		<li><a href="{{url absolute="true"}}">{{label}}</a></li>
+		{{#if @last}}
+	</ul>
+</div>
+{{/if}}
+{{/foreach}}
+{{/if}}

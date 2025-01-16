@@ -1,0 +1,15 @@
+{{!< default}}
+<div class="custom-error custom-wrap">
+	<div class="custom-container">
+		<div class="custom-error-content custom-content">
+			<h1>{{statusCode}}</h1>
+			<p class="global-excerpt">{{message}}</p>
+			<a href="{{@site.url}}" class="global-button">{{t "Back to homepage"}}</a>
+		</div>
+	</div>
+</div>
+{{#get "posts" limit="3" filter="feature_image:-null" include="authors,tags,tiers" as |special_posts|}}
+	{{#if special_posts}}
+		{{>loop is_archive=true label=(t "Check out the latest posts")}}
+	{{/if}}
+{{/get}}

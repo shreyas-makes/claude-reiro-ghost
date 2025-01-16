@@ -1,0 +1,58 @@
+{{#if show_all_option}}
+<div class="global-meta is-full-meta{{#is "post"}} is-post{{/is}}">
+	{{#if @custom.show_author}}
+	<div class="global-meta-wrap">
+		<div>
+			{{#foreach authors}}
+			<a href="{{url}}" class="global-meta-avatar{{#if profile_image}} is-image global-image{{/if}}">
+				{{#if profile_image}}
+				{{>images/other_image other_image=profile_image alt=name lazy=true}}
+				{{else}}
+				<span>{{name}}</span>
+				{{/if}}
+			</a>
+			{{/foreach}}
+		</div>
+	</div>
+	{{/if}}
+	<div class="global-meta-content">
+		{{#if @custom.show_author}}
+		<div>
+			{{t "by"}}
+			{{#has author="count:1"}}
+			{{authors}}
+			{{else has author="count:2"}}
+			{{authors separator=(t "&")}}
+			{{else has author="count:3"}}
+			{{authors to="2"}}{{t "and"}}{{authors from="3"}}
+			{{else has author="count:>3"}}
+			{{authors}}
+			{{/has}}
+		</div>
+		{{/if}}
+		{{#is "post"}}
+		<time datetime="{{date format="YYYY-MM-DD"}}"><span>{{date published_at format="LL"}} ∙ </span>{{reading_time minute=(t "1 minute read") minutes=(t "% minutes read")}}</time>
+		{{else}}
+		{{#if @custom.show_author}}
+		<time datetime="{{date format="YYYY-MM-DD"}}"><span>{{date published_at format="LL"}} ∙ </span>{{reading_time minute=(t "1 minute read") minutes=(t "% minutes read")}}</time>
+		{{/if}}
+		{{/is}}
+	</div>
+</div>
+{{else}}
+{{#if @custom.show_author}}
+<div class="global-meta">
+	<div class="global-meta-content">
+		{{t "by"}}
+		{{#has author="count:1"}}
+		{{authors}}
+		{{else has author="count:2"}}
+		{{authors separator=(t "&")}}
+		{{else has author="count:>2"}}
+		{{authors limit="1"}}
+		{{t "and others"}}
+		{{/has}}
+	</div>
+</div>
+{{/if}}
+{{/if}}

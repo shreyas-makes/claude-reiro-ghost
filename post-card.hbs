@@ -1,0 +1,30 @@
+<article class="post-card {{#has tag="rough-notes"}}rough-notes-post-card{{/has}}"></article>
+  <header class="post-card-header">
+    <h2 class="post-card-title">
+      <a href="{{url}}">{{title}}</a>
+    </h2>
+    <time class="post-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMMM DD, YYYY"}}</time>
+  </header>
+  
+  {{#if feature_image}}
+    <img class="post-card-image" src="{{feature_image}}" alt="{{title}}">
+  {{/if}}
+  
+  <section class="post-card-excerpt">
+    <p>{{excerpt words="30"}}...</p>
+  </section>
+  
+  <footer class="post-card-footer">
+    {{#if tags}}
+      <div class="post-card-tags">
+        {{#foreach tags}}
+          <span class="post-card-tag">{{name}}</span>
+        {{/foreach}}
+      </div>
+    {{/if}}
+    
+    {{#if reading_time}}
+      <span class="post-card-reading-time">{{reading_time minute="1 min read" minutes="% min read"}}</span>
+    {{/if}}
+  </footer>
+</article>

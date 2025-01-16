@@ -1,0 +1,69 @@
+{{!< default}}
+{{#post}}
+{{^is "page"}}
+{{#if access}}<progress class="post-progress"></progress>{{/if}}
+{{/is}}
+<article class="post-section{{^is "page"}}{{^match @custom.sidebar "Disable"}} is-sidebar{{/match}}{{/is}}">
+    {{#match @page.show_title_and_feature_image}}
+    {{>posts/header}}
+    {{/match}}
+    <div class="post-wrap global-padding">
+        {{^is "page"}}
+        {{#match @custom.sidebar "Without Subscription form"}}
+        <div class="post-sidebar">
+            {{>posts/sidebar}}
+        </div>
+        {{/match}}
+        {{#match @custom.sidebar "With Subscription form"}}
+        <div class="post-sidebar">
+            {{#if access}}
+            {{>posts/sidebar}}
+            {{>members/sidebar_form is_box=true}}
+            {{else if html}}
+            {{>posts/sidebar}}
+            {{/if}}
+        </div>
+        {{/match}}
+        {{#match @custom.sidebar "With sticky Subscription form"}}
+        <div class="post-sidebar">
+            {{#if access}}
+            {{>posts/sidebar}}
+            {{>members/sidebar_form is_box=true is_sticky=true}}
+            {{else if html}}
+            {{>posts/sidebar}}
+            {{/if}}
+        </div>
+        {{/match}}
+        {{/is}}
+        <div class="post-content">
+            {{#if access}}
+            {{content}}
+            {{^is "page"}}
+            {{>posts/share}}
+            <!-- Add webmentions here, inside post-content -->
+            <div id="webmentions"></div>
+            <script src="{{asset "js/webmention.js"}}" async></script>
+            {{/is}}
+            {{else}}
+            {{#if html}}
+            <div class="members-cta-teaser">
+                {{{html}}}
+            </div>
+            {{/if}}
+            {{>members/cta}}
+            {{/if}}
+        </div>
+    </div>
+</article>
+{{^is "page"}}
+{{>posts/navigation}}
+{{>posts/comments}}
+{{#if primary_tag}}
+{{#get "posts" limit="5" filter="tags:{{primary_tag.slug}}+id:-{{id}}" include="authors" as |special_posts|}}
+    {{#if special_posts}}
+        {{>related label=(t "You might also like")}}
+    {{/if}}
+{{/get}}
+{{/if}}
+{{/is}}
+{{/post}}

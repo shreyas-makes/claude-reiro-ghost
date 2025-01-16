@@ -1,0 +1,145 @@
+{{!< default}}
+{{#post}}
+{{#if @member.paid}}
+<div class="account-section global-padding">
+	<div class="post-header">
+		<div class="post-header-wrap global-padding is-center is-archive-image">
+			<div class="post-header-content">
+				<div class="archive-image global-image global-dynamic-color is-account">
+					{{>icons/site/user}}
+					{{#if @member.avatar_image}}
+					<img src="{{@member.avatar_image}}">
+					{{/if}}
+				</div>
+				<h1 class="post-title global-title">{{#if @member.name}}{{@member.name}}{{else}}{{t "Your account"}}{{/if}}</h1>
+				<p class="post-excerpt global-excerpt">
+					{{#if custom_excerpt}}
+					{{custom_excerpt}}
+					{{else}}
+					{{t "Nice, you’re a paying subscriber! You’ve an active account with access to all posts."}}
+					{{/if}}
+				</p>
+			</div>
+		</div>
+	</div>
+	{{#foreach @member.subscriptions}}
+	<div class="account-details">
+		<small class="global-subtitle">{{t "Account details"}}</small>
+		<div class="account-details-wrap global-radius">
+			<div class="account-details-content">
+				<div class="account-detail-column">
+					<div>
+						<label class="account-detail-heading">{{t "Email address"}}</label>
+						<span class="account-detail-content">{{@member.email}}</span>
+					</div>
+					<div>
+						<label class="account-detail-heading">{{t "Your plan"}}</label>
+						<span class="account-detail-content">{{tier.name}} — {{price plan}}/{{plan.interval}}</span>
+					</div>
+				</div>
+				<div class="account-detail-column">
+					<div>
+						<label class="account-detail-heading">{{t "Card"}}</label>
+						<span class="account-detail-content">**** **** **** {{default_payment_card_last4}}</span>
+					</div>
+					<div>
+						<label class="account-detail-heading">
+							{{#if cancel_at_period_end}}
+							{{t "Expires"}}
+							{{else}}
+							{{t "Next bill date"}}
+							{{/if}}
+						</label>
+						<span class="account-detail-content">{{date current_period_end format="DD MMM YYYY"}}</span>
+					</div>
+				</div>
+				{{#if cancel_at_period_end}}
+				<small class="account-alert-expired">
+				{{t "Your subscription will expire on"}} — {{date current_period_end format="DD MMMM YYYY"}}. {{t "If you change your mind in the meantime you can turn auto-renew back on to continue your subscription."}}
+				</small>
+				{{/if}}
+				<div class="account-signout-wrap">
+					<span class="global-button" data-members-signout>{{t "Sign out"}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="account-buttons">
+			<a href="javascript:" class="account-button" data-portal="account">{{t "Account settings"}}</a>
+			{{cancel_link class="account-button" errorClass="cancel-error global-alert" cancelLabel=(t "Cancel subscription") continueLabel=(t "Continue subscription")}}
+		</div>
+	</div>
+	{{/foreach}}
+</div>
+{{#get "posts" limit="5" filter="visibility:[members,paid,tiers]" include="authors" as |special_posts|}}
+	{{#if special_posts}}
+		{{>related label=(t "The latest posts only for subscribers")}}
+	{{/if}}
+{{/get}}
+{{else if @member}}
+<div class="account-section global-padding">
+	<div class="post-header">
+		<div class="post-header-wrap global-padding is-center is-archive-image">
+			<div class="post-header-content">
+				<div class="archive-image global-image global-dynamic-color is-account">
+					{{>icons/site/user}}
+					{{#if @member.avatar_image}}
+					<img src="{{@member.avatar_image}}">
+					{{/if}}
+				</div>
+				<h1 class="post-title global-title">{{#if @member.name}}{{@member.name}}{{else}}{{t "Your account"}}{{/if}}</h1>
+				<p class="post-excerpt global-excerpt">
+					{{#if custom_excerpt}}
+					{{custom_excerpt}}
+					{{else}}
+					{{#if @site.paid_members_enabled}}
+					{{t "Currently, you’re not a paying subscriber. You’ve an active account with access to posts for subscribers only."}}
+					{{else}}
+					{{t "You’ve an active account with access to posts for subscribers."}}
+					{{/if}}
+					{{/if}}
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="account-details">
+		<small class="global-subtitle">{{t "Account details"}}</small>
+		<div class="account-details-wrap global-radius">
+			<div class="account-details-content">
+				<div class="account-detail-column">
+					<div>
+						<label class="account-detail-heading">{{t "Email address"}}</label>
+						<span class="account-detail-content">{{@member.email}}</span>
+					</div>
+				</div>
+				{{#if @site.paid_members_enabled}}
+				<div class="account-detail-column">
+					<div>
+						<label class="account-detail-heading">{{t "Your plan"}}</label>
+						<span class="account-detail-content">{{t "Free"}}</span>
+					</div>
+				</div>
+				{{/if}}
+				<div class="account-signout-wrap">
+					<span class="global-button" data-members-signout>{{t "Sign out"}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="account-buttons">
+			<a href="javascript:" class="account-button" data-portal="account">{{t "Account settings"}}</a>
+		</div>
+	</div>
+</div>
+{{#if @site.paid_members_enabled}}
+	{{>members/tiers}}
+{{/if}}
+{{#get "posts" limit="5" filter="visibility:[members,paid,tiers]" include="authors" as |special_posts|}}
+	{{#if special_posts}}
+		{{>related label=(t "The latest posts only for subscribers")}}
+	{{/if}}
+{{/get}}
+{{else}}
+{{#contentFor "script_js"}}
+<script>window.addEventListener("load",function(){window.location='{{@site.url}}'})</script>
+{{/contentFor}}
+{{/if}}
+{{/post}}

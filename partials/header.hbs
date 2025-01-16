@@ -1,0 +1,17 @@
+<header class="header-section">
+	<div class="header-wrap">
+		<div class="header-logo global-logo is-header">{{>logo}}</div>
+		<div class="header-nav">
+			{{>search is_mobile=true}}
+			<input id="toggle" class="header-checkbox" type="checkbox">
+			<label class="header-toggle" for="toggle">
+				<span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</span>
+			</label>
+			<nav{{^if @site.members_enabled}} class="is-right"{{/if}}>{{navigation}}</nav>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,3 @@
+{{^is "author,tag"}}{{#if custom_cover}}<div class="global-cover{{#if is_membership}} is-membership{{else if is_featured}} is-featured{{/if}}" style="background-image:url({{{img_url custom_cover size="xl" format="webp"}}})"></div>{{/if}}{{/is}}
+{{#is "author"}}{{{block "cover_image"}}}{{/is}}
+{{#is "tag"}}{{{block "feature_image"}}}{{/is}}

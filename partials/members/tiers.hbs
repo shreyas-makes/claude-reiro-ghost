@@ -1,0 +1,74 @@
+<div class="membership-section global-padding">
+	<small class="global-subtitle">{{t "See pricing plans"}}</small>
+	<div class="membership-wrap global-radius">
+		{{>images/background_cover custom_cover=feature_image is_membership=true}}
+		{{#if @site.paid_members_enabled}}
+		<div class="membership-switch" data-active-price="{{@site.portal_default_plan}}" data-active-price-plans="{{@site.portal_plans}}"{{#get "tiers" limit="all" filter="visibility:public+type:paid" as |public_paid_tiers|}} data-active-public-paid-tiers="{{#if public_paid_tiers}}true{{else}}false{{/if}}"{{/get}}>
+			<button data-price="monthly">{{t "Monthly"}}</button>
+			<button data-price="yearly">{{t "Yearly"}}</button>
+		</div>
+		{{/if}}
+		<div class="membership-cards">
+			{{^if @member}}
+			{{#if membership_page}}
+			{{#get "tiers" filter="visibility:public+type:free" include="benefits"}}
+			{{#foreach tiers}}
+			<div class="membership-card global-radius">
+				<div class="membership-card-content">
+					<small>{{name}}</small>
+					<h2 class="membership-card-price"><sup>{{t "$"}}</sup>0</h2>
+					{{#if description}}<p class="membership-card-excerpt global-excerpt">{{description}}</p>{{/if}}
+					{{#if benefits}}
+					<div class="membership-card-list">
+						<ul>
+							{{#foreach benefits as |benefit|}}
+							<li>{{benefit}}</li>
+							{{/foreach}}
+						</ul>
+					</div>
+					{{/if}}
+				</div>
+				<a href="{{@site.url}}/signup/" class="membership-button global-button">{{t "Sign up for free"}}</a>
+			</div>
+			{{/foreach}}
+			{{/get}}
+			{{/if}}
+			{{/if}}
+			{{#if @site.paid_members_enabled}}
+			{{#get "tiers" limit="all" filter="visibility:public+type:paid" include="monthly_price,yearly_price,benefits"}}
+			{{#foreach tiers}}
+			<div class="membership-card global-radius">
+				<div class="membership-card-content">
+					<small>{{name}}</small>
+					<h2 class="membership-card-price" data-monthly>{{#if monthly_price}}<sup>{{price currency=currency}}</sup>{{price monthly_price}}{{else}}<sup>{{t "$"}}</sup>0{{/if}}<span>/{{t "month"}}</span></h2>
+					<h2 class="membership-card-price" data-yearly>{{#if yearly_price}}<sup>{{price currency=currency}}</sup>{{price yearly_price}}{{else}}<sup>{{t "$"}}</sup>0{{/if}}<span>/{{t "year"}}</span></h2>
+					{{#if description}}<p class="membership-card-excerpt global-excerpt">{{description}}</p>{{/if}}
+					{{#if benefits}}
+					<div class="membership-card-list">
+						<ul>
+							{{#foreach benefits as |benefit|}}
+							<li>{{benefit}}</li>
+							{{/foreach}}
+						</ul>
+					</div>
+					{{/if}}
+				</div>
+				<a href="javascript:" data-portal="signup/{{id}}/monthly" class="membership-button global-button" data-monthly>{{#if trial_days}}{{t "Start {trial}-day free trial" trial=trial_days}}{{else}}{{t "Sign up now"}}{{/if}}</a>
+				<a href="javascript:" data-portal="signup/{{id}}/yearly" class="membership-button global-button" data-yearly>{{#if trial_days}}{{t "Start {trial}-day free trial" trial=trial_days}}{{else}}{{t "Sign up now"}}{{/if}}</a>
+			</div>
+			{{/foreach}}
+			{{/get}}
+			{{/if}}
+		</div>
+	</div>
+	{{^if @member}}
+	{{#if membership_page}}
+	<small class="global-question"><span>{{t "Already have an account?"}}</span> <a href="{{@site.url}}/signin/">{{t "Sign in"}}</a></small>
+	{{/if}}
+	{{/if}}
+</div>
+{{#contentFor "script_js"}}
+<script>
+!function(){const c=document.querySelector(".membership-switch"),t=document.querySelectorAll(".membership-switch button");c&&t.forEach(e=>{e.addEventListener("click",t=>{c.setAttribute("data-active-price",e.getAttribute("data-price"))})})}();
+</script>
+{{/contentFor}}

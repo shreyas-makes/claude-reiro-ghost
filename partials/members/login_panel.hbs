@@ -1,0 +1,8 @@
+{{#if @site.members_enabled}}
+{{#if @member}}
+<li class="account"><a href="{{@site.url}}/account/" class="global-button no-color">{{t "Account"}}</a></li>
+{{else}}
+<li class="signin"><a href="{{@site.url}}/signin/">{{t "Sign in"}}</a></li>
+<li class="signup"><a href="{{@site.url}}{{#if @custom.slug_for_become_a_subscriber_button}}{{@custom.slug_for_become_a_subscriber_button}}{{else}}/signup/{{/if}}" class="global-button">{{t "Subscribe"}}</a></li>
+{{/if}}
+{{/if}}

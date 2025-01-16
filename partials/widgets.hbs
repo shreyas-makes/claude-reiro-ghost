@@ -1,0 +1,65 @@
+{{#match @custom.widgets "Popular tags"}}
+{{#if @custom.slugs_for_selected_tags_or_authors}}
+{{#get "tags" limit="7" filter="slug:[{{@custom.slugs_for_selected_tags_or_authors}}]+visibility:public+feature_image:-null" include="count.posts" as |widget|}}
+{{#if widget}}
+<div class="widget-section global-padding">
+	<small class="global-subtitle">{{t "Popular tags"}}</small>
+	<div class="widget-wrap is-tags">
+		{{#foreach widget}}
+		{{#if count.posts}}
+		{{>item is_widget=true is_topics=true other_image=feature_image alt=""}}
+		{{/if}}
+		{{/foreach}}
+	</div>
+</div>
+{{/if}}
+{{/get}}
+{{else}}
+{{#get "tags" limit="7" filter="visibility:public+feature_image:-null" include="count.posts" order="count.posts desc" as |widget|}}
+{{#if widget}}
+<div class="widget-section global-padding">
+	<small class="global-subtitle">{{t "Popular tags"}}</small>
+	<div class="widget-wrap is-tags">
+		{{#foreach widget}}
+		{{#if count.posts}}
+		{{>item is_widget=true is_topics=true other_image=feature_image alt=""}}
+		{{/if}}
+		{{/foreach}}
+	</div>
+</div>
+{{/if}}
+{{/get}}
+{{/if}}
+{{else match @custom.widgets "Best authors"}}
+{{#if @custom.slugs_for_selected_tags_or_authors}}
+{{#get "authors" limit="8" filter="slug:[{{@custom.slugs_for_selected_tags_or_authors}}]+visibility:public+profile_image:-null" include="count.posts" as |widget|}}
+{{#if widget}}
+<div class="widget-section global-padding">
+	<small class="global-subtitle">{{t "Best authors"}}</small>
+	<div class="widget-wrap is-authors">
+		{{#foreach widget}}
+		{{#if count.posts}}
+		{{>item is_widget=true is_authors=true other_image=profile_image alt=""}}
+		{{/if}}
+		{{/foreach}}
+	</div>
+</div>
+{{/if}}
+{{/get}}
+{{else}}
+{{#get "authors" limit="8" filter="visibility:public+profile_image:-null" include="count.posts" order="count.posts desc" as |widget|}}
+{{#if widget}}
+<div class="widget-section global-padding">
+	<small class="global-subtitle">{{t "Best authors"}}</small>
+	<div class="widget-wrap is-authors">
+		{{#foreach widget}}
+		{{#if count.posts}}
+		{{>item is_widget=true is_authors=true other_image=profile_image alt=""}}
+		{{/if}}
+		{{/foreach}}
+	</div>
+</div>
+{{/if}}
+{{/get}}
+{{/if}}
+{{/match}}
